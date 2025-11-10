@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router";
+import { Toaster } from "react-hot-toast";
 
 import { useAuthStore } from "./store/useAuthStore";
 
@@ -38,6 +39,8 @@ export default function App() {
           element={!authUser ? <SignUpPage /> : <Navigate to="/" />}
         />
       </Routes>
+
+      <Toaster />
     </div>
   );
 }
