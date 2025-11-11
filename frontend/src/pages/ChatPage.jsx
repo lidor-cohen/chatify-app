@@ -11,7 +11,7 @@ import { useChatStore } from "../store/useChatStore";
 import BorderAnimatedContainer from "../components/BorderAnimatedContainer";
 
 function ChatPage() {
-  const { authData } = useAuthStore();
+  const { authUser } = useAuthStore();
   const { activeTab, selectedUser } = useChatStore();
 
   return (
