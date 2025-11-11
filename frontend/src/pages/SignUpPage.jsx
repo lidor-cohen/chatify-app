@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 import { useAuthStore } from "../store/useAuthStore";
 
@@ -25,10 +25,6 @@ function SignUpPage() {
     e.preventDefault();
     signup(formData);
   };
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   return (
     <div className="w-full flex items-center justify-center p-4 bg-slate-900">
