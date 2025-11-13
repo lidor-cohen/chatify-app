@@ -81,4 +81,29 @@ export const useChatStore = create((set, get) => ({
       toast(error?.response?.data?.message || "Failed to send message");
     }
   },
+
+  subscribeToMessages: () => {
+    const { selectedUser } = get();
+    if (!selectedUser) return;
+
+    const socket = useAuthStore.getState().socket;
+    socket.on("newMessage", (message) => {
+      const isMessageSentFromSelectedUser =
+        message.senderId === selectedUser._id;
+      if (!isMessageSentFromSelectedUser) return;
+
+      const currentMessage = get().messages;
+      set({ messages: currentMessage.concat(message) });
+
+      const notificationSound = new Audio("/sounds/notification.mp3");
+      notificationSound
+        .play()
+        .catch((e) => console.error("Couldn't play notification sound: " + e));
+    });
+  },
+
+  unsubscribeFromMessages: () => {
+    const socket = useAuthStore.getState().socket;
+    socket.off("newMessage");
+  },
 }));
