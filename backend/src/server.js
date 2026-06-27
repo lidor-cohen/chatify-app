@@ -17,6 +17,8 @@ const PORT = ENV.PORT || 3000;
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
+console.log("CORS origin set to:", ENV.CLIENT_URL);
+
 app.use(
   cors({
     origin: ENV.CLIENT_URL,
